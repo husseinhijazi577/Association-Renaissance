@@ -1,0 +1,2712 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+  <head>
+    <meta name="author" content="Hussein Hijazi" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Renaissance – Protéger aujourd'hui. Reconstruire durablement.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <script src="script/script.js" defer></script>
+  </head>
+  <body>
+    <!-- ═══ BUTTERFLY BUTTON ═══ -->
+    <button
+      type="button"
+      id="butterfly-btn"
+      class="center"
+      onclick="activateSite()"
+      aria-label="Ouvrir le site Renaissance"
+    >
+      <img src="images/Papillon.JPG" alt="Logo Renaissance" />
+    </button>
+
+    <!-- ═══ INTRO OVERLAY ═══ -->
+    <div id="intro-overlay">
+      <div class="intro-text">
+        <h2>Renaissance</h2>
+        <p>Association de proximité à Roubaix</p>
+      </div>
+      <p class="intro-hint">Cliquez sur le papillon pour continuer</p>
+    </div>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="navbar">
+      <button
+        type="button"
+        id="hamburger-btn"
+        onclick="toggleMobileMenu()"
+        aria-label="Menu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links">
+        <button
+          type="button"
+          class="nav-link active"
+          onclick="showSection('home')"
+        >
+          Accueil
+        </button>
+        <button type="button" class="nav-link" onclick="showSection('impact')">
+          Notre Impact
+        </button>
+        <button type="button" class="nav-link" onclick="showSection('axes')">
+          Nos Actions
+        </button>
+        <button
+          type="button"
+          class="nav-link"
+          onclick="showSection('histoire')"
+        >
+          Notre Histoire
+        </button>
+        <button type="button" class="nav-link" onclick="showSection('membres')">
+          L'Équipe
+        </button>
+        <button
+          type="button"
+          class="nav-link"
+          onclick="showSection('services')"
+        >
+          Services Proches
+        </button>
+        <button
+          type="button"
+          class="nav-link accent"
+          onclick="showSection('dons')"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="ico"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+          Faire un Don
+        </button>
+        <button type="button" class="nav-link" onclick="showSection('contact')">
+          Nous Contacter
+        </button>
+      </div>
+      <div class="nav-right">
+        <div id="search-wrapper">
+          <svg
+            class="search-icon"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Rechercher…"
+            autocomplete="off"
+            oninput="handleSearch(this.value)"
+            onfocus="openSearch()"
+            onblur="closeSearchDelayed()"
+          />
+          <div id="search-dropdown"></div>
+        </div>
+        <button
+          type="button"
+          id="dark-toggle"
+          onclick="toggleDark()"
+          title="Mode sombre"
+        >
+          <svg
+            id="icon-moon"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg
+            id="icon-sun"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            style="display: none"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══ MOBILE MENU PANEL ═══ -->
+    <div id="mobile-menu">
+      <button
+        type="button"
+        class="mobile-nav-link active"
+        onclick="
+          showSection('home');
+          closeMobileMenu();
+        "
+      >
+        Accueil
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-link"
+        onclick="
+          showSection('impact');
+          closeMobileMenu();
+        "
+      >
+        Notre Impact
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-link"
+        onclick="
+          showSection('axes');
+          closeMobileMenu();
+        "
+      >
+        Nos Actions
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-link"
+        onclick="
+          showSection('histoire');
+          closeMobileMenu();
+        "
+      >
+        Notre Histoire
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-link"
+        onclick="
+          showSection('membres');
+          closeMobileMenu();
+        "
+      >
+        L'Équipe
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-link"
+        onclick="
+          showSection('services');
+          closeMobileMenu();
+        "
+      >
+        Services Proches
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-link"
+        onclick="
+          showSection('contact');
+          closeMobileMenu();
+        "
+      >
+        Nous Contacter
+      </button>
+      <button
+        type="button"
+        class="mobile-nav-link accent"
+        onclick="
+          showSection('dons');
+          closeMobileMenu();
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="ico"
+        >
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+          />
+        </svg>
+        Faire un Don
+      </button>
+      <div class="mobile-divider"></div>
+      <div id="mobile-search-wrapper">
+        <svg
+          class="mobile-search-icon"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+        <input
+          id="mobile-search-input"
+          type="text"
+          placeholder="Rechercher…"
+          autocomplete="off"
+          oninput="handleSearch(this.value, 'mobile')"
+          onfocus="openSearch('mobile')"
+          onblur="closeSearchDelayed('mobile')"
+        />
+        <div id="mobile-search-dropdown"></div>
+      </div>
+      <button
+        type="button"
+        id="mobile-dark-toggle"
+        onclick="toggleDark()"
+        title="Mode sombre"
+      >
+        <svg
+          id="mobile-icon-moon"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg
+          id="mobile-icon-sun"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          style="display: none"
+        >
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main id="main-content">
+      <!-- ─────────── ACCUEIL ─────────── -->
+      <div id="section-home" class="page-section active">
+        <!-- HERO -->
+        <section id="hero">
+          <div class="hero-content">
+            <div class="hero-tag">🦋 Association loi 1901 · Roubaix</div>
+            <h1 class="hero-title">Renaissance</h1>
+            <p class="hero-subtitle">
+              Protéger aujourd'hui.<br />Reconstruire durablement.
+            </p>
+            <p class="hero-desc">
+              Accompagner les femmes victimes de violences intrafamiliales et
+              leurs enfants vers la sécurité, l'autonomie et une nouvelle
+              perspective de vie.
+            </p>
+            <div class="hero-ctas">
+              <button
+                type="button"
+                class="btn-primary"
+                onclick="showSection('dons')"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ico"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+                Soutenir l'association
+              </button>
+              <button
+                type="button"
+                class="btn-secondary"
+                onclick="showSection('contact')"
+              >
+                Nous contacter
+              </button>
+            </div>
+            <div class="hero-pillars">
+              <div class="pillar">
+                <div class="pillar-icon">
+                  <svg
+                    id="svg-hero-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <h4>Protéger</h4>
+                <p>Mise à l'abri et protection immédiate</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">
+                  <svg
+                    id="svg-hero-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l.77.78L12 21l7.65-7.65.77-.78a5.4 5.4 0 0 0 0-7.65v0z"
+                    />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                </div>
+                <h4>Accompagner</h4>
+                <p>Un suivi global, humain et individualisé</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">
+                  <svg
+                    id="svg-hero-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path d="M7 20h10" />
+                    <path d="M10 20c5.5-2.5.8-6.4 3-10" />
+                    <path
+                      d="M9.5 9.4c1.1.8 1.8 2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"
+                    />
+                    <path
+                      d="M14.1 6a7 7 0 0 1 1.1 4.8 4 4 0 0 1-1.3-.3c0-1.3-.3-2.5-1-3.5-.5-.8-1.3-1.5-2.2-2 1.3-.4 2.6-.1 3.4 1z"
+                    />
+                  </svg>
+                </div>
+                <h4>Reconstruire</h4>
+                <p>Vers l'autonomie, la dignité et la reprise du pouvoir</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CHIFFRES RAPIDES -->
+        <section style="background: var(--surface2)">
+          <div class="container">
+            <div class="section-header reveal">
+              <span class="section-tag">Nos Efforts 2024–2025</span>
+              <h2 class="section-title">Des résultats concrets</h2>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-card reveal">
+                <div class="stat-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div class="stat-number">181</div>
+                <div class="stat-label">Femmes accompagnées</div>
+              </div>
+              <div class="stat-card reveal">
+                <div class="stat-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path
+                      d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                    />
+                  </svg>
+                </div>
+                <div class="stat-number">407</div>
+                <div class="stat-label">
+                  Personnes accompagnées en alphabétisation
+                </div>
+              </div>
+              <div class="stat-card reveal">
+                <div class="stat-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"
+                    />
+                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z" />
+                    <path d="M7 21H17" />
+                    <path d="M12 3v18" />
+                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                  </svg>
+                </div>
+                <div class="stat-number">350</div>
+                <div class="stat-label">
+                  Dossiers juridiques & administratifs traités
+                </div>
+              </div>
+              <div class="stat-card reveal">
+                <div class="stat-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div class="stat-number">60</div>
+                <div class="stat-label">Enfants accompagnés</div>
+              </div>
+            </div>
+            <div class="highlight-banner reveal">
+              <div id="stat-center" class="big-pct">70%</div>
+              <p>
+                Taux de réussite des accompagnements · Un accompagnement de
+                proximité, humain et efficace
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- PERSPECTIVES -->
+        <section>
+          <div class="container">
+            <div class="section-header reveal">
+              <span class="section-tag">Perspectives &amp; Engagement</span>
+              <h2 class="section-title">
+                Agir aujourd'hui pour<br />construire demain
+              </h2>
+              <p class="section-desc">
+                Face à la hausse continue des besoins, Renaissance poursuit son
+                développement en 2026 avec l'ambition de renforcer ses actions.
+              </p>
+            </div>
+            <div class="perspectives-grid">
+              <div class="persp-card reveal">
+                <div class="persp-icon">
+                  <svg
+                    id="centered-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
+                </div>
+                <h3>Renforcer l'accompagnement global</h3>
+                <p>
+                  Des femmes et de leurs enfants pour un soutien encore plus
+                  complet et personnalisé.
+                </p>
+              </div>
+              <div class="persp-card reveal">
+                <div class="persp-icon">
+                  <svg
+                    id="centered-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"
+                    />
+                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z" />
+                    <path d="M7 21H17" />
+                    <path d="M12 3v18" />
+                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                  </svg>
+                </div>
+                <h3>Développer l'accès aux droits</h3>
+                <p>
+                  Et à l'autonomie juridique, administrative et sociale de
+                  chaque bénéficiaire.
+                </p>
+              </div>
+              <div class="persp-card reveal">
+                <div class="persp-icon">
+                  <svg
+                    id="centered-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"
+                    />
+                    <path
+                      d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"
+                    />
+                  </svg>
+                </div>
+                <h3>Construire des parcours de sortie</h3>
+                <p>
+                  Des violences durables et pérennes, adaptés à chaque situation
+                  individuelle.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FOOTER CONTACT (1re occurrence) -->
+        <footer class="footer-contact">
+          <div class="container">
+            <div>
+              <div class="footer-brand">
+                <img
+                  id="contact-butterfly"
+                  alt="Logo Renaissance"
+                  src="images/Papillon.JPG"
+                />
+                <span class="footer-brand-name">Renaissance</span>
+              </div>
+              <p class="footer-tagline">
+                Association de proximité à Roubaix,<br />accompagnant les femmes
+                victimes de violences intrafamiliales et leurs enfants.
+              </p>
+              <div class="footer-social">
+                <!-- 📌 REMPLACER les href="#" par les vraies URLs des réseaux sociaux -->
+                <a
+                  href="https://www.instagram.com/asso.renaissance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Instagram @asso.renaissance"
+                  ><img src="images/Instagram.jpg" alt="Instagram"
+                /></a>
+                <a
+                  href="https://www.facebook.com/share/1GNyQGymH5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Facebook"
+                  ><img src="images/Facebook.png" alt="Facebook"
+                /></a>
+                <a
+                  href="https://wa.me/33614084220"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="WhatsApp"
+                  ><img src="images/whatsapp.jpg" alt="WhatsApp"
+                /></a>
+                <a
+                  href="https://www.linkedin.com/in/safiha-nadir-54b106416/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="LinkedIn"
+                >
+                  <img src="images/Linked-in.png" alt="LinkedIn" />
+                </a>
+                <!-- Ajouter d'autres réseaux si nécessaire -->
+              </div>
+            </div>
+            <div class="footer-details">
+              <div class="footer-col">
+                <h4>Nous trouver</h4>
+                <ul>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <path
+                          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                        />
+                        <circle cx="12" cy="10" r="3" /></svg
+                    ></span>
+                    69/3 rue Jules Watteeuw, 59100 Roubaix
+                  </li>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                        /></svg
+                    ></span>
+                    06 14 08 42 20
+                  </li>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <path
+                          d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                        />
+                        <polyline points="22,6 12,13 2,6" /></svg
+                    ></span>
+                    renaissancerbx@gmail.com
+                  </li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                  <li>
+                    <a
+                      onclick="showSection('impact')"
+                      style="
+                        cursor: pointer;
+                        color: rgba(255, 255, 255, 0.6335);
+                      "
+                      >Notre Impact</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      onclick="showSection('axes')"
+                      style="cursor: pointer; color: rgba(255, 255, 255, 0.65)"
+                      >Nos Actions</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      onclick="showSection('histoire')"
+                      style="cursor: pointer; color: rgba(255, 255, 255, 0.65)"
+                      >Notre Histoire</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      onclick="showSection('dons')"
+                      style="cursor: pointer; color: rgba(255, 255, 255, 0.65)"
+                      >Faire un Don</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      onclick="showSection('services')"
+                      style="cursor: pointer; color: rgba(255, 255, 255, 0.65)"
+                      >Services Proches</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      onclick="showSection('contact')"
+                      style="cursor: pointer; color: rgba(255, 255, 255, 0.65)"
+                      >Nous Contacter</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>© 2026 Association Renaissance · Loi 1901 · Roubaix</p>
+          </div>
+        </footer>
+      </div>
+
+      <!-- ─────────── IMPACT ─────────── -->
+      <div id="section-impact" class="page-section">
+        <section>
+          <div class="container">
+            <div class="section-header reveal">
+              <span class="section-tag">Contexte & Constats</span>
+              <h2 class="section-title">
+                Un territoire particulièrement exposé
+              </h2>
+              <p class="section-desc">
+                Le département du Nord et la ville de Roubaix concentrent des
+                fragilités structurelles importantes qui renforcent l'urgence de
+                notre mission.
+              </p>
+            </div>
+            <div class="context-grid">
+              <div class="context-card reveal">
+                <h3>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                  </svg>
+                  Département du Nord — 2024
+                </h3>
+                <div class="context-stat">
+                  <span class="num">14,1</span>
+                  <p>
+                    victimes de violences conjugales pour 1 000 femmes (15–64
+                    ans) · Taux supérieur à la moyenne nationale
+                  </p>
+                </div>
+                <p
+                  style="
+                    font-size: 0.8rem;
+                    color: var(--texte-doux);
+                    margin-top: 10px;
+                  "
+                >
+                  Source : Ministère de l'Intérieur – Interstats 2024
+                </p>
+              </div>
+              <div class="context-card reveal">
+                <h3>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                  Roubaix — Des fragilités structurelles
+                </h3>
+                <div class="context-stat">
+                  <span class="num" style="color: var(--violet)">46%</span>
+                  <p>de la population sous le seuil de pauvreté (2021)</p>
+                </div>
+                <div class="context-stat">
+                  <span class="num" style="color: var(--corail)">28,9%</span>
+                  <p>de familles monoparentales</p>
+                </div>
+                <div class="context-stat">
+                  <span class="num" style="color: var(--orange)">26,4%</span>
+                  <p>de taux de chômage (2022)</p>
+                </div>
+                <div class="context-stat">
+                  <span
+                    class="num"
+                    style="color: var(--bleu-petr); font-size: 1.5rem"
+                    >98 892</span
+                  >
+                  <p>habitants (population légale)</p>
+                </div>
+                <p
+                  style="
+                    font-size: 0.8rem;
+                    color: var(--texte-doux);
+                    margin-top: 10px;
+                  "
+                >
+                  Source : INSEE – Données 2021–2022
+                </p>
+              </div>
+            </div>
+            <div style="margin-top: 60px">
+              <div class="section-header reveal">
+                <span class="section-tag">Notre Impact 2024–2025</span>
+                <h2 class="section-title">Des résultats qui parlent</h2>
+              </div>
+              <div class="stats-grid">
+                <div class="stat-card reveal">
+                  <div class="stat-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                  <div class="stat-number">181</div>
+                  <div class="stat-label">Femmes accompagnées</div>
+                </div>
+                <div class="stat-card reveal">
+                  <div class="stat-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                      <path
+                        d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="stat-number">407</div>
+                  <div class="stat-label">Personnes en alphabétisation</div>
+                </div>
+                <div class="stat-card reveal">
+                  <div class="stat-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"
+                      />
+                      <path
+                        d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"
+                      />
+                      <path d="M7 21H17" />
+                      <path d="M12 3v18" />
+                      <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                    </svg>
+                  </div>
+                  <div class="stat-number">350</div>
+                  <div class="stat-label">Dossiers juridiques traités</div>
+                </div>
+                <div class="stat-card reveal">
+                  <div class="stat-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                  <div class="stat-number">60</div>
+                  <div class="stat-label">Enfants accompagnés</div>
+                </div>
+              </div>
+              <div class="highlight-banner reveal">
+                <div class="big-pct">70%</div>
+                <p>
+                  Taux de réussite des accompagnements · Un accompagnement de
+                  proximité, humain et efficace
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ─────────── AXES D'INTERVENTION ─────────── -->
+      <div id="section-axes" class="page-section">
+        <section>
+          <div class="container">
+            <div class="section-header reveal">
+              <span class="section-tag">Nos Axes d'Intervention</span>
+              <h2 class="section-title">
+                Un accompagnement global<br />et complémentaire
+              </h2>
+              <p class="section-desc">
+                Cinq axes complémentaires pour répondre à l'ensemble des besoins
+                des femmes et enfants que nous accompagnons.
+              </p>
+            </div>
+            <div class="axes-list">
+              <div class="axe-card reveal">
+                <div
+                  class="axe-num"
+                  style="background: linear-gradient(135deg, #245b73, #6ec6ca)"
+                >
+                  01
+                </div>
+                <div class="axe-body">
+                  <h3>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                      />
+                      <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                    Hébergement et protection immédiate
+                  </h3>
+                  <p>
+                    Mise à l'abri sécurisée, écoute, appui psychologique et
+                    distribution de produits de première nécessité. Nous
+                    assurons une réponse d'urgence rapide et inconditionnelle
+                    pour toute femme en danger.
+                  </p>
+                </div>
+              </div>
+              <div class="axe-card reveal">
+                <div
+                  class="axe-num"
+                  style="background: linear-gradient(135deg, #6ec6ca, #7e6baf)"
+                >
+                  02
+                </div>
+                <div class="axe-body">
+                  <h3>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"
+                      />
+                      <path
+                        d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"
+                      />
+                      <path d="M7 21H17" />
+                      <path d="M12 3v18" />
+                      <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                    </svg>
+                    Accompagnement social, administratif et juridique
+                  </h3>
+                  <p>
+                    Démarches, droits, procédures judiciaires, divorce, garde
+                    d'enfants, régularisation, permanences juridiques et
+                    orientations. Nous guidons chaque femme dans le maquis
+                    administratif pour faire valoir ses droits.
+                  </p>
+                </div>
+              </div>
+              <div class="axe-card reveal">
+                <div
+                  class="axe-num"
+                  style="background: linear-gradient(135deg, #7e6baf, #f07c6f)"
+                >
+                  03
+                </div>
+                <div class="axe-body">
+                  <h3>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    </svg>
+                    Alphabétisation et accès aux savoirs
+                  </h3>
+                  <p>
+                    Cours individuels et collectifs, apprentissage du français,
+                    remise à niveau, soutien aux démarches et insertion
+                    professionnelle. L'accès au savoir est un levier fondamental
+                    d'émancipation.
+                  </p>
+                </div>
+              </div>
+              <div class="axe-card reveal">
+                <div
+                  class="axe-num"
+                  style="background: linear-gradient(135deg, #f07c6f, #f4a261)"
+                >
+                  04
+                </div>
+                <div class="axe-body">
+                  <h3>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    Accompagnement des enfants
+                  </h3>
+                  <p>
+                    Soutien scolaire, activités éducatives, développement
+                    personnel et suivi psychologique si nécessaire. Les enfants
+                    témoins ou victimes de violences bénéficient d'un suivi
+                    spécialisé et bienveillant.
+                  </p>
+                </div>
+              </div>
+              <div class="axe-card reveal">
+                <div
+                  class="axe-num"
+                  style="background: linear-gradient(135deg, #f4a261, #245b73)"
+                >
+                  05
+                </div>
+                <div class="axe-body">
+                  <h3>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                      />
+                    </svg>
+                    Prévention, aller-vers et sensibilisation
+                  </h3>
+                  <p>
+                    Actions de prévention, ateliers collectifs, information,
+                    orientation et lutte contre le non-recours aux droits. Nous
+                    allons au-devant des personnes les plus éloignées des
+                    services pour briser l'isolement.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- ─────────── Histoire ─────────── -->
+      <div id="section-histoire" class="page-section">
+        <section>
+          <div class="container">
+            <div class="section-header reveal">
+              <span class="section-tag">Notre histoire</span>
+              <h2 class="section-title">De la fondation à aujourd'hui</h2>
+              <p class="section-desc">
+                Découvrez notre aventure entière, dès les moments fondateurs
+                primordiaux, ainsi que nos projets futurs
+              </p>
+            </div>
+
+            <!-- INTRO NARRATIVE -->
+            <div class="axes-list" style="margin-bottom: 60px">
+              <div class="axe-card reveal">
+                <div
+                  class="axe-num"
+                  style="background: linear-gradient(135deg, #7b1c2e, #b0324a)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                    style="width: 28px; height: 28px"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <div class="axe-body">
+                  <h3>Les origines — 2020</h3>
+                  <p>
+                    L’association RENAISSANCE a été fondée le 4 septembre 2020 à
+                    Roubaix, à l’initiative de Safia NADIR, à partir d’un
+                    constat de terrain : les femmes victimes de violences
+                    intrafamiliales se heurtaient à des démarches complexes, à
+                    des délais importants et à un accès difficile aux
+                    dispositifs existants. <br /><br />
+                    L’objectif était de créer une structure de proximité,
+                    accessible sans condition, capable d’accueillir, d’écouter
+                    et d’accompagner les femmes et leurs enfants de manière
+                    réactive et humaine. <br />
+                    <br />
+                    Dès son origine, l’association a fait le choix d’une
+                    approche globale associant protection, accès aux droits et
+                    accompagnement vers l’autonomie.
+                  </p>
+                </div>
+              </div>
+              <div class="axe-card reveal">
+                <div
+                  class="axe-num"
+                  style="background: linear-gradient(135deg, #b0324a, #c96a3a)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                    style="width: 28px; height: 28px"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <div class="axe-body">
+                  <h3>Les premières années</h3>
+                  <p>
+                    Les femmes accompagnées par l’association sont souvent
+                    confrontées à une accumulation de difficultés : précarité
+                    économique, isolement social, dépendance administrative,
+                    faible niveau d’alphabétisation, méconnaissance de leurs
+                    droits. <br />
+                    <br />
+                    Dans ce contexte, l’accès à la justice, aux dispositifs de
+                    protection ou aux aides sociales devient un parcours semé
+                    d’obstacles, parfois décourageant, voire dissuasif. À cela
+                    s’ajoute une carence locale en solutions d’hébergement
+                    d’urgence pour les femmes victimes de violences,
+                    contraignant certaines d’entre elles à demeurer dans des
+                    situations de danger. <br />
+                    <br />
+                    C’est à partir de ce constat, nourri à la fois par
+                    l’engagement personnel de la présidente Safia NADIR et par
+                    un travail mené aux côtés d’autres acteurs associatifs et
+                    institutionnels, que l’association RENAISSANCE a été créée.
+                  </p>
+                </div>
+              </div>
+              <div class="axe-card reveal">
+                <div
+                  class="axe-num"
+                  style="background: linear-gradient(135deg, #c96a3a, #d4933a)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                    style="width: 28px; height: 28px"
+                  >
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                  </svg>
+                </div>
+                <div class="axe-body">
+                  <h3>La croissance</h3>
+                  <p>
+                    L’association RENAISSANCE a connu une croissance continue de
+                    ses activités pour répondre aux besoins croissants des
+                    familles accompagnées. <br />
+                    <br />
+                    En 2024, elle a soutenu 110 femmes victimes de violences
+                    intrafamiliales, accompagné 140 adultes en parcours
+                    d’alphabétisation et suivi 50 enfants en soutien scolaire,
+                    avec 75 % d’entre eux montrant une amélioration de leurs
+                    résultats. <br /><br />
+                    Son réseau de partenaires s’est progressivement renforcé,
+                    permettant une prise en charge plus globale et coordonnée.
+                    Cette montée en charge confirme à la fois la pertinence de
+                    son action et l’importance de son rôle sur le territoire.
+                  </p>
+                </div>
+              </div>
+              <div class="axe-card reveal">
+                <div
+                  class="axe-num"
+                  style="background: linear-gradient(135deg, #245b73, #6ec6ca)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                    style="width: 28px; height: 28px"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
+                </div>
+                <div class="axe-body">
+                  <h3>Aujourd'hui &amp; demain — 2025–2026</h3>
+                  <p>
+                    Aujourd’hui, nous constatons que notre association a franchi
+                    une nouvelle étape de son développement. <br /><br />
+                    Face à l’augmentation des demandes et à la complexité des
+                    situations rencontrées, nous devons désormais consolider
+                    notre organisation pour continuer à accompagner les familles
+                    dans de bonnes conditions. <br /><br />
+                    Pour l’avenir, nous souhaitons renforcer nos moyens
+                    d’action, développer davantage la prévention et la
+                    sensibilisation auprès des jeunes, et poursuivre notre
+                    engagement de proximité afin d’apporter des réponses
+                    durables aux besoins des personnes les plus vulnérables de
+                    notre territoire.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- VALEURS FONDATRICES -->
+            <div class="section-header reveal" style="margin-top: 40px">
+              <span class="section-tag">Origines</span>
+              <h2 class="section-title">Ce qui nous anime</h2>
+              <p class="section-desc">
+                La conviction que personne ne devrait faire face seul aux
+                difficultés de la vie. Notre engagement est d’offrir un lieu de
+                proximité où les femmes et les familles peuvent être
+                accueillies, écoutées et accompagnées, quel que soit leur
+                parcours ou leur situation.
+              </p>
+            </div>
+            <div class="perspectives-grid">
+              <div class="persp-card reveal">
+                <div class="persp-icon">
+                  <svg
+                    id="centered-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                    />
+                  </svg>
+                </div>
+                <h3 id="centered-text">Bienveillance</h3>
+                <p>
+                  Nous accordons une attention sincère aux besoins de chacun.
+                  Par l’écoute, le respect et l’entraide, nous créons un
+                  environnement accueillant où chaque personne se sent
+                  considérée et soutenue.
+                </p>
+              </div>
+              <div class="persp-card reveal">
+                <div class="persp-icon">
+                  <svg
+                    id="centered-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"
+                    />
+                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z" />
+                    <path d="M7 21H17" />
+                    <path d="M12 3v18" />
+                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                  </svg>
+                </div>
+                <h3 id="centered-text1">Justice</h3>
+                <p>
+                  Nous veillons à agir avec équité et impartialité dans toutes
+                  nos actions. Nous respectons les droits de chacun et
+                  favorisons l’égalité des chances au sein de nos activités.
+                </p>
+              </div>
+              <div class="persp-card reveal">
+                <div class="persp-icon">
+                  <svg
+                    id="centered-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"
+                    />
+                    <path
+                      d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"
+                    />
+                  </svg>
+                </div>
+                <h3 id="centered-text2">Résilience</h3>
+                <p>
+                  Nous faisons preuve de persévérance face aux difficultés
+                  rencontrées. En nous adaptant aux défis et en apprenant de
+                  chaque expérience, nous poursuivons notre mission avec
+                  détermination.
+                </p>
+              </div>
+            </div>
+
+            <!-- CTA bas de page -->
+            <div class="highlight-banner reveal" style="margin-top: 60px">
+              <p style="font-size: 1.1rem; font-weight: 500">
+                Renaissance est née d'une conviction simple : chaque femme
+                mérite d'être protégée, entendue et accompagnée vers une vie
+                digne et noble.
+              </p>
+              <button
+                type="button"
+                class="btn-primary"
+                onclick="showSection('membres')"
+                style="margin-top: 20px"
+              >
+                Découvrir l'équipe
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ─────────── MEMBRES ─────────── -->
+      <div id="section-membres" class="page-section">
+        <section>
+          <div class="container">
+            <div class="section-header reveal">
+              <span class="section-tag">L'Équipe</span>
+              <h2 class="section-title">Les membres de l'association</h2>
+              <p class="section-desc">
+                Des professionnelles engagées au quotidien pour la protection et
+                l'autonomisation des femmes et de leurs enfants.
+              </p>
+            </div>
+            <div class="members-grid">
+              <div class="member-card reveal">
+                <div class="member-avatar">P</div>
+                <div class="member-name">Safiha Nadir</div>
+                <div class="member-title">Présidente</div>
+                <p class="member-bio">
+                  Gère l'ensemble de l'association et assure le bon
+                  fonctionnement et la cohésion des différents roles.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">T</div>
+                <div class="member-name">Yacine</div>
+                <div class="member-title">Trésorier</div>
+                <p class="member-bio">
+                  Assure le bon traitement de vos dons, ainsi que les frais
+                  d'inscription aux cours d'alphabétisation.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">J</div>
+                <div class="member-name">Zak</div>
+                <div class="member-title">Juriste</div>
+                <p class="member-bio">
+                  Encadre le remplissage des dossiers des personnes nous
+                  visitant, de façon cohérente pour l'état.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">TS</div>
+                <div class="member-name">Michel-angelo</div>
+                <div class="member-title">Travailleur social</div>
+                <p class="member-bio">
+                  Prend charge des relations sociales, et recrutent les nouveaux
+                  bénévoles.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">TS</div>
+                <div class="member-name">Lilia</div>
+                <div class="member-title">Travailleur social</div>
+                <p class="member-bio">
+                  Prend charge des relations sociales, et recrutent les nouveaux
+                  bénévoles.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">TS</div>
+                <div class="member-name">Christel</div>
+                <div class="member-title">Travailleur social</div>
+                <p class="member-bio">
+                  Prend charge des relations sociales, et recrutent les nouveaux
+                  bénévoles.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Inf</div>
+                <div class="member-name">Laurence</div>
+                <div class="member-title">Infirmière</div>
+                <p class="member-bio">
+                  En cas de difficulté médicale, prend en charge votre
+                  rétablissement.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Inf</div>
+                <div class="member-name">Safia</div>
+                <div class="member-title">Infirmière</div>
+                <p class="member-bio">
+                  En cas de difficulté médicale, prend en charge votre
+                  rétablissement.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">S</div>
+                <div class="member-name">Imène</div>
+                <div class="member-title">Secrétaire</div>
+                <p class="member-bio">
+                  Responsable de la mise en garde de vos dossiers.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Ent</div>
+                <div class="member-name">Selim</div>
+                <div class="member-title">Entreprneur</div>
+                <p class="member-bio">
+                  Assure la récuperation et la mise en place des dons
+                  non-alimentaires venant à l'association.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">EN</div>
+                <div class="member-name">Sirine</div>
+                <div class="member-title">Education nationale</div>
+                <p class="member-bio">
+                  Met en place le programme d'alphabétisation pour assurer un
+                  bon niveau global.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Av</div>
+                <div class="member-name">Maitre Badaoui</div>
+                <div class="member-title">Avocat</div>
+                <p class="member-bio">
+                  Toujours à l'écoute en cas de dispute judiciaire.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Av</div>
+                <div class="member-name">Maitre Modesty</div>
+                <div class="member-title">Avocat</div>
+                <p class="member-bio">
+                  Toujours à l'écoute en cas de dispute judiciaire.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">FR</div>
+                <div class="member-name">Sihame</div>
+                <div class="member-title">Alphabétisation</div>
+                <p class="member-bio">
+                  Vous procure des cours d'alphabétisation de différents
+                  niveaux.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">FR</div>
+                <div class="member-name">Damia</div>
+                <div class="member-title">Alphabétisation</div>
+                <p class="member-bio">
+                  Vous procure des cours d'alphabétisation de différents
+                  niveaux.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">FR</div>
+                <div class="member-name">Naziha</div>
+                <div class="member-title">Alphabétisation</div>
+                <p class="member-bio">
+                  Vous procure des cours d'alphabétisation de différents
+                  niveaux.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">FR</div>
+                <div class="member-name">Malika</div>
+                <div class="member-title">Alphabétisation</div>
+                <p class="member-bio">
+                  Vous procure des cours d'alphabétisation de différents
+                  niveaux.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Etd</div>
+                <div class="member-name">Ibrahim</div>
+                <div class="member-title">Etudiant bénévole</div>
+                <p class="member-bio">
+                  Gère les séances d'aide aux devoirs scolaires.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Etd</div>
+                <div class="member-name">Tahar</div>
+                <div class="member-title">Etudiant bénévole</div>
+                <p class="member-bio">
+                  Gère les séances d'aide aux devoirs scolaires.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Etd</div>
+                <div class="member-name">Mohamed</div>
+                <div class="member-title">Etudiant bénévole</div>
+                <p class="member-bio">
+                  Gère les séances d'aide aux devoirs scolaires.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Etd</div>
+                <div class="member-name">Chorouk</div>
+                <div class="member-title">Etudiante bénévole</div>
+                <p class="member-bio">
+                  Gère les séances d'aide aux devoirs scolaires.
+                </p>
+              </div>
+              <div class="member-card reveal">
+                <div class="member-avatar">Etd</div>
+                <div class="member-name">Shahima</div>
+                <div class="member-title">Etudiant bénévole</div>
+                <p class="member-bio">
+                  Gère les séances d'aide aux devoirs scolaires.
+                </p>
+              </div>
+            </div>
+            <div id="join-us">
+              <h2 class="section-title">Rejoindre l'équipe</h2>
+              <div id="encouraging-message">
+                Vous êtes sensible à notre cause et souhaitez agir concrètement
+                pour soutenir les femmes et les enfants que nous accompagnons ?
+                Rejoignez Renaissance en tant que bénévole et mettez votre
+                temps, vos compétences ou simplement votre énergie au service
+                d'une mission humaine et solidaire. Chaque engagement compte et
+                contribue à offrir un accompagnement plus fort, plus proche et
+                plus durable aux personnes qui en ont besoin.
+              </div>
+              <p class="join-contact-text">
+                Pour devenir bénévole ou obtenir davantage d'informations,
+                contactez notre équipe. Nous serons ravis d'échanger avec vous
+                sur les différentes façons de vous engager à nos côtés.
+              </p>
+              <button
+                type="button"
+                class="btn-primary join-btn"
+                onclick="showSection('contact')"
+              >
+                Nous contacter
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ─────────── DONS ─────────── -->
+      <div id="section-dons" class="page-section">
+        <section>
+          <div class="container">
+            <div class="section-header reveal">
+              <span class="section-tag">Nous Soutenir</span>
+              <h2 class="section-title">Votre générosité change des vies</h2>
+              <p class="section-desc">
+                Chaque don, même modeste, a un impact concret et immédiat sur
+                les femmes et enfants que nous accompagnons au quotidien.
+              </p>
+            </div>
+
+            <!-- Carte principale : venir aux locaux -->
+            <div
+              class="dons-hero reveal"
+              style="text-align: center; max-width: 680px; margin: 0 auto 60px"
+            >
+              <div class="dons-big-icon" style="margin-bottom: 20px">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ico"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <h2 style="margin-bottom: 16px">Venez nous rendre visite</h2>
+              <p
+                style="
+                  font-size: 1.05rem;
+                  line-height: 1.7;
+                  margin-bottom: 28px;
+                "
+              >
+                Pour nous soutenir, la façon la plus directe est de passer nous
+                voir directement à nos locaux. Notre équipe vous accueille
+                chaleureusement pour recevoir vos dons — financiers, matériels
+                ou en nature — et vous expliquer comment votre contribution sera
+                utilisée.
+              </p>
+              <div
+                class="contact-item"
+                style="justify-content: center; margin-bottom: 12px"
+              >
+                <div
+                  class="ci-icon"
+                  style="background: rgba(110, 198, 202, 0.15)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="ci-label">Notre adresse</div>
+                  <div class="ci-val">
+                    69/3 rue Jules Watteeuw<br />59100 Roubaix
+                  </div>
+                </div>
+              </div>
+              <div
+                class="contact-item"
+                style="justify-content: center; margin-bottom: 28px"
+              >
+                <div
+                  class="ci-icon"
+                  style="background: rgba(244, 162, 97, 0.15)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="ci-label">Nous appeler avant de passer</div>
+                  <div class="ci-val">
+                    <a href="tel:0614084220">06 14 08 42 20</a>
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="btn-primary"
+                onclick="showSection('contact')"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ico"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Voir comment nous trouver
+              </button>
+            </div>
+
+            <!-- Impact des dons -->
+            <div class="section-header reveal">
+              <span class="section-tag">L'Impact de votre soutien</span>
+              <h2 class="section-title">Concrètement, votre don permet…</h2>
+            </div>
+            <div class="impact-dons">
+              <div class="impact-don-card reveal">
+                <div class="montant">10 €</div>
+                <p>
+                  Financer une séance d'écoute et d'orientation pour une femme
+                  en détresse
+                </p>
+              </div>
+              <div class="impact-don-card reveal">
+                <div class="montant">20 €</div>
+                <p>
+                  Couvrir les frais d'un atelier d'alphabétisation pour une
+                  participante
+                </p>
+              </div>
+              <div class="impact-don-card reveal">
+                <div class="montant">50 €</div>
+                <p>
+                  Prendre en charge une consultation juridique ou une permanence
+                  de droits
+                </p>
+              </div>
+              <div class="impact-don-card reveal">
+                <div class="montant">100 €</div>
+                <p>
+                  Financer l'accompagnement complet d'un enfant pendant une
+                  semaine
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ─────────── SERVICES PROCHES ─────────── -->
+      <div id="section-services" class="page-section">
+        <section>
+          <div class="container">
+            <div class="section-header reveal">
+              <span class="section-tag">Services de Proximité</span>
+              <h2 class="section-title">
+                Les services proches<br />de l'association
+              </h2>
+              <p class="section-desc">
+                Partenaires et services publics à proximité, utiles à nos
+                bénéficiaires et à notre équipe. Ces informations sont mises à
+                jour lors de tout changement de locaux.
+              </p>
+            </div>
+            <div class="services-intro reveal">
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ico"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <h3>Adresse de Renaissance</h3>
+                <p>69/3 rue Jules Watteeuw · 59100 Roubaix</p>
+              </div>
+            </div>
+            <div class="services-grid">
+              <!-- 📌 COMPLÉTER chaque carte avec les vraies adresses, horaires et numéros -->
+              <div class="service-card reveal">
+                <div class="service-card-header">
+                  <div
+                    class="service-icon"
+                    style="background: rgba(110, 198, 202, 0.15)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                      />
+                      <line x1="12" y1="12" x2="12" y2="16" />
+                      <line x1="10" y1="14" x2="14" y2="14" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>Centre Hospitalier de Roubaix</h3>
+                    <div class="adresse">
+                      11 boulevard Lacordaire, 59100 Roubaix
+                    </div>
+                  </div>
+                </div>
+                <div class="phone">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                    />
+                  </svg>
+                  03 20 99 31 31
+                </div>
+                <div class="horaires">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Urgences 24h/24
+                </div>
+              </div>
+              <div class="service-card reveal">
+                <div class="service-card-header">
+                  <div
+                    class="service-icon"
+                    style="background: rgba(126, 107, 175, 0.15)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>Commissariat de Police de Roubaix</h3>
+                    <div class="adresse">72 Bd de Belfort, 59100 Roubaix</div>
+                  </div>
+                </div>
+                <div class="phone">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                    />
+                  </svg>
+                  17 (urgence)
+                </div>
+                <div class="horaires">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Ouvert 24h/24 · 7j/7
+                </div>
+              </div>
+              <div class="service-card reveal">
+                <div class="service-card-header">
+                  <div
+                    class="service-icon"
+                    style="background: rgba(240, 124, 111, 0.15)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path d="M3 22h18" />
+                      <path d="M6 18V9" />
+                      <path d="M10 18V9" />
+                      <path d="M14 18V9" />
+                      <path d="M18 18V9" />
+                      <path d="M3 9h18" />
+                      <path d="M2 5l10-3 10 3v4H2V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>CCAS de Roubaix</h3>
+                    <div class="adresse">
+                      17, Grand'<br />
+                      Place CS 70737 <br />59100 Roubaix Cedex 1
+                    </div>
+                  </div>
+                </div>
+                <div class="phone">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                    />
+                  </svg>
+                  03 20 66 46 00
+                </div>
+              </div>
+              <div class="service-card reveal">
+                <div class="service-card-header">
+                  <div
+                    class="service-icon"
+                    style="background: rgba(244, 162, 97, 0.15)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                      />
+                      <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>Préfecture / Sous-préfecture</h3>
+                    <div class="adresse">
+                      2 / 14 rue Jean Sans Peur 59039 Lille
+                    </div>
+                  </div>
+                </div>
+                <div class="phone">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                    />
+                  </svg>
+                  03 20 30 59 59
+                </div>
+              </div>
+              <div class="service-card reveal">
+                <div class="service-card-header">
+                  <div
+                    class="service-icon"
+                    style="background: rgba(36, 91, 115, 0.15)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                      />
+                      <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>CHRS / Hébergement d'urgence</h3>
+                    <div class="adresse">
+                      36 RUE DU DUC BP 30205 59100 Roubaix
+                    </div>
+                  </div>
+                </div>
+                <div class="phone">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ico"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                    />
+                  </svg>
+                  115 (SAMU Social)
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ─────────── CONTACT ─────────── -->
+      <div id="section-contact" class="page-section">
+        <section>
+          <div class="container">
+            <div class="section-header reveal">
+              <span class="section-tag">Entrer en contact</span>
+              <h2 class="section-title">Nous sommes là pour vous</h2>
+              <p class="section-desc">
+                Que vous ayez besoin d'aide, souhaitiez nous rejoindre ou nous
+                soutenir, retrouvez-nous sur nos réseaux ou venez directement à
+                nos locaux.
+              </p>
+            </div>
+            <div class="contact-grid">
+              <div class="contact-infos">
+                <h3>Nos coordonnées</h3>
+                <div class="contact-item">
+                  <div
+                    class="ci-icon"
+                    style="background: rgba(110, 198, 202, 0.15)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                      />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="ci-label">Adresse</div>
+                    <div class="ci-val">
+                      69/3 rue Jules Watteeuw 59100 Roubaix
+                    </div>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div
+                    class="ci-icon"
+                    style="background: rgba(244, 162, 97, 0.15)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="ci-label">Téléphone</div>
+                    <div class="ci-val">
+                      <a href="tel:0614084220">06 14 08 42 20</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div
+                    class="ci-icon"
+                    style="background: rgba(126, 107, 175, 0.15)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                      />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="ci-label">Email</div>
+                    <div class="ci-val">
+                      <a href="mailto:renaissancerbx@gmail.com"
+                        >renaissancerbx@gmail.com</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div
+                    class="ci-icon"
+                    style="background: rgba(240, 124, 111, 0.15)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="ci-label">Horaires d'accueil</div>
+                    <div class="horaires-grid">
+                      <div class="h-row">
+                        <span class="h-day">Lundi</span>
+                        <span class="h-slot">10:00 - 12:00</span>
+                        <span class="h-slot">14:00 - 18:00</span>
+                      </div>
+                      <div class="h-row">
+                        <span class="h-day">Mardi</span>
+                        <span class="h-slot">10:00 - 12:00</span>
+                        <span class="h-slot">14:00 - 18:00</span>
+                      </div>
+                      <div class="h-row">
+                        <span class="h-day">Mercredi</span>
+                        <span class="h-slot">10:00 - 12:00</span>
+                        <span class="h-slot">14:00 - 18:00</span>
+                      </div>
+                      <div class="h-row">
+                        <span class="h-day">Jeudi</span>
+                        <span class="h-slot">10:00 - 12:00</span>
+                        <span class="h-slot">14:00 - 18:00</span>
+                      </div>
+                      <div class="h-row">
+                        <span class="h-day">Vendredi</span>
+                        <span class="h-slot">10:00 - 12:00</span>
+                        <span class="h-slot">14:00 - 18:00</span>
+                      </div>
+                      <div class="h-row">
+                        <span class="h-day">Samedi</span>
+                        <span class="h-slot">10:00 - 12:00</span>
+                        <span class="h-slot">14:00 - 18:00</span>
+                      </div>
+                      <div class="h-note">Sur rendez-vous si nécessaire</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Réseaux sociaux mis en valeur -->
+              <div
+                class="contact-form reveal"
+                style="display: flex; flex-direction: column; gap: 24px"
+              >
+                <h3>Suivez-nous &amp; écrivez-nous</h3>
+                <p
+                  style="
+                    color: var(--texte-doux);
+                    font-size: 0.95rem;
+                    line-height: 1.6;
+                  "
+                >
+                  La façon la plus rapide de nous joindre est de nous écrire
+                  directement via nos réseaux sociaux. Nous sommes actives et
+                  répondons régulièrement aux messages.
+                </p>
+
+                <a
+                  class="social-btn social-btn--large"
+                  href="https://www.instagram.com/asso.renaissance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="images/Instagram.jpg" alt="Instagram" />
+                  <div>
+                    <div style="font-weight: 600">Instagram</div>
+                    <div style="font-size: 0.85rem; opacity: 0.75">
+                      @asso.renaissance · Photos & actualités
+                    </div>
+                  </div>
+                  <span class="social-arrow">→</span>
+                </a>
+
+                <a
+                  class="social-btn social-btn--large"
+                  href="https://www.facebook.com/share/1GNyQGymH5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="images/Facebook.png" alt="Facebook" />
+                  <div>
+                    <div style="font-weight: 600">Facebook</div>
+                    <div style="font-size: 0.85rem; opacity: 0.75">
+                      @asso.renaissance · Événements & annonces
+                    </div>
+                  </div>
+                  <span class="social-arrow">→</span>
+                </a>
+
+                <a
+                  class="social-btn social-btn--large"
+                  href="https://wa.me/33614084220"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="images/whatsapp.jpg" alt="WhatsApp" />
+                  <div>
+                    <div style="font-weight: 600">WhatsApp</div>
+                    <div style="font-size: 0.85rem; opacity: 0.75">
+                      Message direct · Réponse rapide
+                    </div>
+                  </div>
+                  <span class="social-arrow">→</span>
+                </a>
+
+                <a
+                  class="social-btn social-btn--large"
+                  href="https://www.linkedin.com/in/safiha-nadir-54b106416/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="linkedin-icon">
+                    <img src="images/Linked-in.png" alt="LinkedIn" />
+                  </div>
+                  <div>
+                    <div style="font-weight: 600">LinkedIn</div>
+                    <div style="font-size: 0.85rem; opacity: 0.75">
+                      @asso.renaissance · Actualités professionnelles
+                    </div>
+                  </div>
+                  <span class="social-arrow">→</span>
+                </a>
+
+                <div
+                  style="
+                    background: var(--surface2);
+                    border-radius: 12px;
+                    padding: 20px;
+                    margin-top: 8px;
+                  "
+                >
+                  <p
+                    style="
+                      margin: 0;
+                      font-size: 0.9rem;
+                      color: var(--texte-doux);
+                      line-height: 1.6;
+                    "
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ico"
+                    >
+                      <path
+                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                      />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    Vous pouvez aussi nous écrire directement à
+                    <a
+                      href="mailto:renaissancerbx@gmail.com"
+                      style="color: var(--bleu-petr); font-weight: 500"
+                      >renaissancerbx@gmail.com</a
+                    >
+                    — Nous vous répondrons dès que possible.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer contact (2e occurrence) -->
+        <footer class="footer-contact" style="margin-top: 0">
+          <div class="container">
+            <div>
+              <div class="footer-brand">
+                <img
+                  id="contact-butterfly"
+                  src="images/Papillon.JPG"
+                  alt="Logo Renaissance"
+                />
+                <span class="footer-brand-name">Renaissance</span>
+              </div>
+              <p class="footer-tagline">
+                Association loi 1901 · Roubaix<br />Protéger aujourd'hui.
+                Reconstruire durablement.
+              </p>
+              <div class="footer-social">
+                <a
+                  href="https://www.instagram.com/asso.renaissance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><img src="images/Instagram.jpg" alt="Instagram"
+                /></a>
+                <a
+                  href="https://www.facebook.com/share/1GNyQGymH5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><img src="images/Facebook.png" alt="Facebook"
+                /></a>
+                <a
+                  href="https://wa.me/33614084220"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><img src="images/whatsapp.jpg" alt="Whatsapp"
+                /></a>
+                <a
+                  href="https://www.linkedin.com/in/safiha-nadir-54b106416/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="LinkedIn"
+                >
+                  <img src="images/Linked-in.png" alt="LinkedIn" />
+                </a>
+              </div>
+            </div>
+            <div class="footer-details">
+              <div class="footer-col">
+                <h4>Contact direct</h4>
+                <ul>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <path
+                          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                        />
+                        <circle cx="12" cy="10" r="3" /></svg></span
+                    >69/3 rue Jules Watteeuw, 59100 Roubaix
+                  </li>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.98 17v-.08z"
+                        /></svg></span
+                    ><a
+                      href="tel:0614084220"
+                      style="color: rgba(255, 255, 255, 0.65)"
+                      >06 14 08 42 20</a
+                    >
+                  </li>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <path
+                          d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                        />
+                        <polyline points="22,6 12,13 2,6" /></svg></span
+                    ><a
+                      href="mailto:renaissancerbx@gmail.com"
+                      style="color: rgba(255, 255, 255, 0.65)"
+                      >renaissancerbx@gmail.com</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>Numéros d'urgence</h4>
+                <ul>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <path
+                          d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                        />
+                        <line x1="12" y1="9" x2="12" y2="13" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" /></svg></span
+                    >3919 — Violences Femmes Info
+                  </li>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <rect x="1" y="3" width="15" height="13" rx="1" />
+                        <path d="M16 8h4l3 3v5h-7V8z" />
+                        <circle cx="5.5" cy="18.5" r="2.5" />
+                        <circle cx="18.5" cy="18.5" r="2.5" /></svg></span
+                    >17 — Police Secours
+                  </li>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <path
+                          d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                        />
+                        <polyline points="9 22 9 12 15 12 15 22" /></svg></span
+                    >115 — SAMU Social
+                  </li>
+                  <li>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ico"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" /></svg></span
+                    >112 — Urgences européennes
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>© 2026 Association Renaissance · Loi 1901 · Roubaix</p>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
